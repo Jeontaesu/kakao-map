@@ -1,6 +1,6 @@
 const toggleTraffic = document.querySelector(".toggleTraffic");
 const mapContainer = document.querySelector("#map");
-const mapOption = { center: new kakao.maps.LatLng(37.51936795597721, 127.05708259472347), level: 4 };
+const mapOption = { center: new kakao.maps.LatLng(37.51936795597721, 127.05708259472347), level: 2 };
 
 //map instance
 const map = new kakao.maps.Map(mapContainer, mapOption);
@@ -20,7 +20,7 @@ marker.setMap(map);
 //add controller layer on map layer
 [mapTypeControl, zoomControl].forEach(el => map.addControl(el));
 
-//toggleTraffic Event bind
+//toggleTraffic event bind
 toggleTraffic.addEventListener("click", e => {
 	e.target.classList.toggle("on");
 
@@ -32,3 +32,6 @@ toggleTraffic.addEventListener("click", e => {
 		map.removeOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
 	}
 });
+
+//resize envent bind
+window.addEventListener("resize", () => map.setCenter(mapOption.center));
